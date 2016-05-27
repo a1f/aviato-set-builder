@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="PROJECT" libraries="{browser, html5shiv, jquery, react-dom-15.0.2, react-with-addons-15.0.2, respond}" />
+    <includedPredefinedLibrary name="ECMAScript 6" />
+  </component>
+</project>
