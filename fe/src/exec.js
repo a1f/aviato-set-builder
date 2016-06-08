@@ -209,6 +209,7 @@ var Memory = React.createClass({
 var MainView = React.createClass({
     getInitialState: function() {
         return {
+            qid: -1,
             input: "",
             output: "",
             memory: [],
@@ -320,12 +321,13 @@ var MainView = React.createClass({
     loadDataFromServer: function() {
         $.ajax({
             type: 'GET',
-            url: '/get_io_example',
+            url: '/get_q',
             success: function (data) {
                 this.setState({
-                    input: data.input,
-                    output: data.output,
-                    memory: this.prepareMemory(data.input),
+                    qid: data.id,
+                    input: data.question,
+                    output: data.answer,
+                    memory: this.prepareMemory(data.question),
                     actions: []
                 });
             }.bind(this),
@@ -356,10 +358,10 @@ var MainView = React.createClass({
         if (this.simpleValidate()) {
             $.ajax({
                 type: 'POST',
-                url: '/send_data',
+                url: '/add_a',
                 data: {
-                    actions: this.state.actions,
-                    memory: this.state.memory
+                    uid: this.state.qid,
+                    actions: this.state.actions
                 },
                 success: function() {
                     this.loadDataFromServer();
